@@ -1,7 +1,7 @@
 /// <reference types = "Cypress" />
-import homePage from './pageObjects/homePage'
-import products from './pageObjects/products'
-import checkout from './pageObjects/checkout'
+import homePage from '../support/pageObjects/homePage'
+import products from '../support/pageObjects/products'
+import checkout from '../support/pageObjects/checkout'
 
 describe("My Test", function(){
 
@@ -17,7 +17,7 @@ this.data=data
         const HomePage = new homePage()
         const Products = new products()
         const Checkout = new checkout()
-        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.visit(Cypress.env('url')+ "/angularpractice/")
         HomePage.getEditBox().type(this.data.name)
         HomePage.getGender().select(this.data.gender)
         HomePage.getTwoWayDataBinding().should('have.value', this.data.name)
