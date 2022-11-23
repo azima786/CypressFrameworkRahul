@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import products from '../integration/pageObjects/products'
+import products from '../support/pageObjects/products'
 
 
 const Products = new products()
