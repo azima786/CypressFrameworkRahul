@@ -4,11 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "headTest": "npx cypress run --headed",
+    "chromeHead": "npm run headTest -- --browser chrome",
+    "parallelChrome": "npm run chromeHead -- --parallel",
+    "specTest": "npm run chromeHead -- --spec",
+    "recordDashBoardTest": "npm run chromeHead -- --record --key b5956d54-5c62-42e2-8448-74f78b4fcb86 --reporter mochawesome",
+    "folderTest": "npm run chromeHead -- --spec \"cypress/integration/*\"",
+    "BDDfolderTest": "npm run chromeHead -- --spec \"cypress/integration/BDD/*.feature\""
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "caniuse-lite": "^1.0.30001434"
+    "@badeball/cypress-cucumber-preprocessor": "^14.0.0",
+    "caniuse-lite": "^1.0.30001434",
+    "cypress": "^11.2.0"
+  },
+  "devDependencies": {
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "mocha": "^10.1.0",
+    "mochawesome": "^7.1.3"
   }
+
 }
