@@ -6,6 +6,8 @@ const HomePage = new homePage()
 const Products = new products()
 const Checkout = new checkout()
 
+
+let name
 Given('I open ECommerce Page', function(){
  cy.visit(Cypress.env('url')+ "/angularpractice/")
 }
@@ -60,13 +62,17 @@ Checkout.clickOnCheckOutButtonOnCheckoutPage().click()
 })
 })
 
-When ('I fill the form details', function (){
-    HomePage.getEditBox().type(this.data.name)
-    HomePage.getGender().select(this.data.gender)
+When ('I fill the form details', function (dataTable){
+    //Using cucumber method
+    name = dataTable.rawTable[1][0]
+    HomePage.getEditBox().type(name)
+  //  HomePage.getEditBox().type(this.data.name)
+    HomePage.getGender().select(dataTable.rawTable[1][1])
+    // HomePage.getGender().select(this.data.gender)
 })
 
-Then ('validate the forms behaviour', function(){
-    HomePage.getTwoWayDataBinding().should('have.value', this.data.name)
+Then ('validate the forms behaviour', function(dataTable){
+    HomePage.getTwoWayDataBinding().should('have.value', name)
     HomePage.getEditBox().should('have.attr', 'minlength', '2')
     HomePage.getEnterpreneaurRadioButton().should('be.disabled')
 })
